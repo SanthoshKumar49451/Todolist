@@ -83,7 +83,6 @@ body {
 
 .todo-data p {
     width: 80%;
-    word-wrap: break-word;
 }
 
 .todo-button button {
