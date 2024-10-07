@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todolist</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="container-header">
+            <h3>Todo list</h3>
+        </div>
+        <div class="container-input">
+            <input type="text" id="todo-input">
+            <button onclick="add()">
+                Add
+            </button>
+        </div>
+        <div class="todo-lists" id="todo-list">
+
+        </div>
+    </div>
+    <script>
+        let todos = []
+
+        let inputField = document.getElementById('todo-input')
+        let todoItem = document.getElementById('todo-list')
+        function add() {
+            if (inputField.value === "") {
+                alert("Add Something")
+            }
+            else {
+                let value = {
+                    id: todos.length,
+                    todoitem: inputField.value
+                }
+                todos.push(value)
+                TODOLIST()
+                inputField.value = ''
+            }
+        }
+        function TODOLIST() {
+            let text = ' '
+            todos.forEach((value) => {
+                text += ` <div class="todo-item">
+                 <div class="todo-data">
+                    <p>${value.todoitem}
+                        </p>
+
+                </div>
+                <div class="todo-button">
+                    <button onclick="deleteTodo(${value.id})">
+                        Delete
+                    </button>
+                </div> 
+                </div>
+           `
+
+
+            })
+            console.log(text)
+
+
+            todoItem.innerHTML = text;
+
+        }
+        function deleteTodo(id) {
+            todos = todos.filter((item) => {
+                item.id !== id
+            })
+            TODOLIST()
+
+        }
+
+
+    </script>
+</body>
+
+</html>
